@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      div {
+        margin: 10px;
+      }
+      .themmoi {
+        padding: 10px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>lam viec voi api</h1>
+    <div id="dssas"></div>
+    <div class="themmoi">
+      <h1>Them moi nguoi dung</h1>
+
+      <div>
+        <label for="">name</label>
+        <input id="name" type="text" />
+      </div>
+      <div>
+        <label for="">avatar</label>
+        <input id="avatar" type="text" />
+      </div>
+      <button onclick="taoNguoiMoi()">tao them nguoi</button>
+    </div>
+
+    <div class="themmoi">
+      <h1>Chinh sua nguoi dung</h1>
+
+      <div>
+        <label for="id">id</label>
+        <input id="editId" type="number" />
+      </div>
+      <div>
+        <label for="">name</label>
+        <input type="text" id="editName" />
+      </div>
+      <div>
+        <label for="">avatar</label>
+        <input type="text" id="editAvatar" />
+      </div>
+
+      <button onclick="chinhSua()">Chinh sua</button>
+    </div>
+
+    <div class="themmoi">
+      <h1>Xoa nguoi dung</h1>
+      <div>
+        <label for="id">id can xoa</label>
+        <input id="deleteId" type="number" />
+      </div>
+      <button onclick="xoaNgDung()">Chinh sua</button>
+    </div>
+  </body>
+  <script src="./bai4.js"></script>
+</html>
