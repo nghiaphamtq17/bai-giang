@@ -1,15 +1,16 @@
 "use client";
 
 import { TinhToan } from "../../components/tinhtoan";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function memo() {
   const [count, setCount] = useState(0);
   const [num, setNum] = useState(5);
 
-  console.log("count", count);
-  console.log("number", num);
-
+  useEffect(() => {
+    console.log('count da thay doi');
+  }, [count])
+  
   return (
     <div>
       <TinhToan giatri={num} />
