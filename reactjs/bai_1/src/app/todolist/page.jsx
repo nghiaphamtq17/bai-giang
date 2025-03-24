@@ -16,6 +16,8 @@ export default function Todo() {
       status: true,
     },
   ]);
+  const [editId, setEditId] = useState(undefined); //1,2,3 -> undefind , string -> null;
+  const [editText, setEditText] = useState("");
 
   const handleAddTodo = () => {
     if (inputValue) {
@@ -27,7 +29,6 @@ export default function Todo() {
           status: false,
         },
       ]);
-
       setInputValue("");
     }
   };
@@ -51,17 +52,62 @@ export default function Todo() {
     }
   };
 
+  const handleEdit = (id, title) => {
+    setEditId(id);
+    setEditText(title);
+  };
+
+  const handleConfirmChangeItem = () => {
+    setList((prev) =>
+      prev.map((item) =>
+        item.id === editId ? { ...item, name: editText } : item
+      )
+    );
+
+    setEditId(undefined);
+    setEditText("");
+  };
+
   return (
-    <div className="min-h-screen flex flex-col gap-4 bg-white text-black">
+    <div className="min-h-screen flex flex-col gap-4 bg-white text-black p-8">
       <h1>Todo list</h1>
 
       {list.length ? (
         list.map((item) => {
+          if (item.id === editId) {
+            return (
+              <div className="flex gap-2">
+                <input
+                  className="border-solid border-black border px-2 py-1"
+                  type="text"
+                  value={editText}
+                  onChange={(e) => setEditText(e.target.value)}
+                />
+                <button
+                  // onClick={
+                  //   () => handleConfirmChangeItem()
+                  // }
+                  onClick={handleConfirmChangeItem}
+                  className="cursor-pointer bg-blue-400 text-white px-3 py-1"
+                >
+                  Submit
+                </button>
+
+                <button
+                  className="cursor-pointer bg-red-400 text-white px-3 py-1"
+                  onClick={() => {
+                    setEditId(undefined);
+                    setEditText(null);
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            );
+          }
           return (
             <div className="flex gap-2" key={item.id}>
-                <div>
-                    id: {item.id},
-                </div>
+              <div>id: {item.id},</div>
               <div>công việc: {item.name},</div>
               <div>
                 trạng thái:{" "}
@@ -75,10 +121,16 @@ export default function Todo() {
                 ,
               </div>
               <div
-                className="cursor-pointer"
+                className="cursor-pointer bg-red-400 text-white px-3 py-1"
                 onClick={() => handleDeleteItem(item.id)}
               >
                 Xoá
+              </div>
+              <div
+                className="cursor-pointer bg-blue-400 text-white px-3 py-1"
+                onClick={() => handleEdit(item.id, item.name)}
+              >
+                Chỉnh sửa
               </div>
             </div>
           );
@@ -97,6 +149,7 @@ export default function Todo() {
         <button
           className="bg-cyan-600 text-white py-2 px-4"
           onClick={handleAddTodo}
+          // onClick={()=> handleAddTodo()}
         >
           submit
         </button>
