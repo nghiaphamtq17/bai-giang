@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/app/use-callback/page.jsx", "src/app/ssg/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,6 +1,7 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useState } from "react";
+import styles from '../../styles/test.module.css'
 
 export default function Todo() {
   const [inputValue, setInputValue] = useState(null);
@@ -69,7 +70,9 @@ export default function Todo() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col gap-4 bg-white text-black p-8">
+    <div 
+    className="min-h-screen flex flex-col gap-4 bg-white text-black p-8"
+    >
       <h1>Todo list</h1>
 
       {list.length ? (
